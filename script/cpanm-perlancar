@@ -1,0 +1,48 @@
+#!perl
+
+# NO_PERINCI_CMDLINE_SCRIPT
+# FRAGMENT id=shcompgen-hint command=_cpanm
+
+# DATE
+# VERSION
+
+use strict;
+use warnings;
+use File::Which;
+
+my $cpanm_path = which("cpanm") or die "Can't find cpanm in PATH\n";
+
+my @cmd = (
+    $^X,
+    "-MModule::Load::In::INIT=App::cpanminus::script::Patch::RunShcompgen=-warn_target_loaded;0",
+    "-MModule::Load::In::INIT=App::cpanminus::script::Patch::UseURIFromFoundMirror=-warn_target_loaded;0",
+    $cpanm_path,
+    @ARGV,
+);
+
+print "cpanm-perlancar: exec: ".join(" ", @cmd), "\n" if $ENV{DEBUG};
+exec @cmd;
+
+# ABSTRACT: Install modules from CPAN (PERLANCAR's flavor)
+# PODNAME:
+
+=head1 SYNOPSIS
+
+Use like you would use L<cpanm>:
+
+ % cpanm-perlancar -n Some::Module ...
+
+To alias it as C<cpanm> in your shell, e.g. in bash:
+
+ alias cpanm=cpanm-perlancar
+
+
+=head1 DESCRIPTION
+
+L<cpanm-perlancar> is a wrapper over L<cpanm>. It runs cpanm patched with some
+patches (see the source for more details).
+
+
+=head1 SEE ALSO
+
+L<cpanm>
