@@ -12,11 +12,15 @@ use File::Which;
 
 my $lcpanm_path = which("lcpanm") or die "Can't find lcpanm in PATH\n";
 
+$ENV{LCPANM_PERL5OPT} = join(
+    " ",
+    "-MModule::Load::In::INIT=-ignore_load_error,App::cpanminus::script::Patch::RunShcompgen=-warn_target_loaded;0",
+    "-MModule::Load::In::INIT=-ignore_load_error,App::cpanminus::script::Patch::UseURIFromFoundMirror=-warn_target_loaded;0",
+    (defined $ENV{LCPANM_PERL5OPT} ? ($ENV{LCPANM_PERL5OPT}) : ()),
+);
+
 my @cmd = (
-    $^X,
-    "-MModule::Load::In::INIT=App::cpanminus::script::Patch::RunShcompgen=-warn_target_loaded;0",
-    "-MModule::Load::In::INIT=App::cpanminus::script::Patch::UseURIFromFoundMirror=-warn_target_loaded;0",
-    $cpanm_path,
+    $lcpanm_path,
     @ARGV,
 );
 
