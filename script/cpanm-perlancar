@@ -14,8 +14,8 @@ my $cpanm_path = which("cpanm") or die "Can't find cpanm in PATH\n";
 
 my @cmd = (
     $^X,
-    "-MModule::Load::In::INIT=App::cpanminus::script::Patch::RunShcompgen=-warn_target_loaded;0",
-    "-MModule::Load::In::INIT=App::cpanminus::script::Patch::UseURIFromFoundMirror=-warn_target_loaded;0",
+    "-MModule::Load::In::INIT=App::cpanminus::script::Patch::RunShcompgen=-load_target;0;-warn_target_loaded;0",
+    "-MModule::Load::In::INIT=App::cpanminus::script::Patch::UseURIFromFoundMirror=-load_target;0;-warn_target_loaded;0",
     $cpanm_path,
     @ARGV,
 );
