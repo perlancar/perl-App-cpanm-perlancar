@@ -1,13 +1,13 @@
-0.003   2018-02-18 (PERLANCAR)
+0.003   2018-02-18  Released-By: PERLANCAR
 
 	- [Bugfix] Use -load_target=0 when patching.
 
 
-0.002   2018-01-15 (PERLANCAR)
+0.002   2018-01-15  Released-By: PERLANCAR
 
 	- Add script: lcpanm-perlancar.
 
 
-0.001   2017-07-14 (PERLANCAR)
+0.001   2017-07-14  Released-By: PERLANCAR
 
         - First release.
