@@ -2,3 +2,4 @@ App-cpanm-perlancar-*
 .build
 *~
 nytprof*
+.DS_Store
